@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+  text-transform: capitalize;
+}
+:root {
+  --blue: #287bff;
+  --grey: #f5f5f5;
+  --white: #fff;
+  --black1: #222;
+  --black2: #999;
+  --transition: 0.5s;
+}
+body {
+  min-height: 100vh;
+}
+.container {
+  width: 100%;
+  position: relative;
+}
+/*start navigation*/
+.navigation {
+  position: fixed;
+  background-color: var(--blue);
+  width: 300px;
+  height: 100%;
+  padding-left: 10px;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.navigation.nonactive {
+  width: 80px;
+}
+@media (max-width: 768px) {
+  .navigation.nonactive {
+    width: 0;
+    padding: 0;
+  }
+  .navigation {
+    width: 80px;
+  }
+}
+.navigation ul li {
+  width: 100%;
+  border-radius: 30px 0 0 30px;
+  position: relative;
+}
+.navigation ul li:nth-child(1) {
+  margin-bottom: 60px;
+  pointer-events: none;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+  color: var(--white);
+}
+.navigation ul li a {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-content: center;
+  flex-wrap: nowrap;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 30px;
+}
+.navigation ul li a .title {
+  align-self: center;
+  white-space: nowrap;
+  font-size: 1.2em;
+  text-transform: capitalize;
+}
+/*navigation li edges*/
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transform: translateY(-100%);
+  box-shadow: 35px 35px 0 10px var(--white);
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transform: translateY(100%);
+  box-shadow: 35px -35px 0 10px var(--white);
+}
+
+/*end navigation*/
+/* start main */
+/* topbar */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  top: 0;
+  left: 300px;
+  transition: var(--transition);
+  padding: 10px;
+  overflow: hidden;
+}
+
+.main.nonactive {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+@media (max-width: 768px) {
+  .main {
+    width: calc(100% - 80px);
+    left: 80px;
+  }
+  .main.nonactive {
+    width: 100%;
+    left: 0;
+  }
+}
+.main .topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main .topbar .toggle ion-icon {
+  font-size: 40px;
+  cursor: pointer;
+}
+.main .topbar .search {
+  position: relative;
+  width: 300px;
+  height: 30px;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .main .topbar .search {
+    width: 150px;
+  }
+}
+.main .topbar .search input {
+  width: 100%;
+  height: 100%;
+  padding: 2px 0 2px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--black2);
+  outline: none;
+  font-size: 18px;
+}
+.main .topbar .search ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+}
+.main .topbar .user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.main .topbar .user-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.main .box-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+.main .box-cards .card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  height: 120px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 10px #ddd;
+}
+@media (min-width: 1800px) {
+  .main .box-cards {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+  .main .box-cards .card {
+    min-width: 350px;
+  }
+}
+.main .box-cards .card:hover {
+  background-color: var(--blue);
+}
+.main .box-cards .card-number {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-top: 8px;
+}
+.main .box-cards .card-name {
+  color: var(--black2);
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.main .box-cards .card-icon {
+  color: var(--black2);
+  font-size: 50px;
+}
+.main .box-cards .card:hover .card-number,
+.main .box-cards .card:hover .card-name,
+.main .box-cards .card:hover .card-icon {
+  color: var(--white);
+}
+/* charts */
+.charts-box {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  min-height: 200px;
+  max-width: 100%;
+  margin: 50px 0;
+}
+@media (max-width: 768px) {
+  .charts-box {
+    grid-template-columns: 1fr;
+  }
+}
+.charts-box .chart-one {
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+}
+.charts-box .chart-two {
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+}
+/* details */
+.details {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
+}
+@media (max-width: 768px) {
+  .details {
+    flex-direction: column;
+  }
+}
+.details .recent-orders {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+@media (max-width: 991px) {
+  .recent-orders {
+    overflow-x: auto;
+  }
+}
+.details .recent-orders .card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 200px;
+}
+.details .recent-orders .card-header h2 {
+  color: var(--blue);
+  font-size: 28px;
+  font-weight: 700;
+}
+.details .recent-orders .card-header .btn {
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 16px;
+  justify-self: end;
+}
+.details .recent-orders table {
+  border-collapse: collapse;
+}
+.details .recent-orders table thead tr td {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding: 15px;
+}
+.details .recent-orders table tbody tr td {
+  font-size: 18px;
+  border-bottom: 1px solid var(--black2);
+  padding: 15px;
+}
+.details .recent-orders table tbody tr:hover {
+  background-color: var(--blue);
+}
+
+.details .recent-orders table tbody tr:last-child td {
+  border-bottom: none;
+}
+.details .recent-orders table tbody tr td:nth-of-type(2) {
+  text-align: end;
+}
+.details .recent-orders table tr td:last-child {
+  text-align: end;
+}
+.delivered {
+  background-color: #8de02c;
+  width: fit-content;
+  font-size: 14px;
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: var(--white);
+}
+.pending {
+  background-color: #f9ca3f;
+  font-size: 14px;
+  width: fit-content;
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: var(--white);
+}
+.return {
+  background-color: #f00;
+  font-size: 14px;
+  width: fit-content;
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: var(--white);
+}
+.progress {
+  background-color: #1795ce;
+  font-size: 14px;
+  width: fit-content;
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: var(--white);
+}
+
+.details .recent-customers-box {
+  display: grid;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 20px;
+  flex-basis: 400px;
+}
+.details .recent-customers-box h2 {
+  color: var(--blue);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+.details .recent-customers-box .customer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.details .recent-customers-box .customer:hover {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.details .recent-customers-box .customer-img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.details img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.details .recent-customers-box .customer-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+.details .recent-customers-box .customer-country {
+  font-size: 14px;
+}
+
+/* end main */
